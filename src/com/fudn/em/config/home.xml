@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+ <struts>
+ 	<package name="home" extends="struts-default" namespace="/pages/home">
+ 		<global-results>
+ 			<result name="error">../errors.jsp</result>
+ 		</global-results>
+ 		<global-exception-mappings>
+ 			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+ 		</global-exception-mappings>
+		
+		<!-- implements action config for module admin -->
+<!-- 		<action name="createMember" class="com.fudn.balo.action.MemberAction" method="createMember">
+			<result name="login" type="redirect" >../../loginAction</result>
+			<result name="input" >createMember.jsp</result>
+			<result name="success">createMember.jsp</result>			
+		</action>
+-->				
+ 	</package>
+ 	
+ </struts>

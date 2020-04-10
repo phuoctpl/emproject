@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="user" extends="struts-default" namespace="/pages/user">
+		<global-results>
+			<result name="error">../errors.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+		
+		<action name="test">
+			<result>test.jsp</result>
+		</action>		
+		<action name="test2">
+			<result>test2.jsp</result>
+		</action>	
+		
+		<action name="change" class="com.fudn.em.action.UserAction"
+			method="changePassword">
+			<result name="success" type="redirect">../../home.action</result>
+			<result name="error">change-password.jsp</result>
+		</action>
+		<action name="changepassword">
+			<result>change-password.jsp</result>
+		</action>
+		<action name="loginabc" class="com.fudn.em.action.UserAction"
+			method="test">
+			<result name="success">success.jsp</result>
+		</action>
+		<action name="doregister">
+  			<result>signup.jsp</result>
+		</action>
+		
+		<action name="musicupload">
+			<result>upload-music.jsp</result>
+		</action>
+		<action name="uploadprocess">
+			<result>music-upload-process.jsp</result>
+		</action>
+		<action name="uploadFile">
+			<result>uploadFile.jsp</result>
+		</action>
+		<action name="channel" class="com.fudn.em.action.UserAction"
+			method="displayChanel">
+			<result name="success">channel.jsp</result>
+		</action>
+		
+		<action name="friend" class="com.fudn.em.action.UserAction"
+			method="addFriend">
+			<result name="success" type="redirect">
+				<param name="location">channel.action?userId=${userId}</param>
+			    <param name="parse">true</param>
+			    <param name="encode">true</param>
+			</result>
+		</action>
+		
+		<action name="editProfileScreen" class="com.fudn.em.action.UserAction"
+			method="displayChanel">
+			<result name="success" >edit-profile.jsp</result>		
+		</action>
+		
+		<action name="editProfile" class="com.fudn.em.action.UserAction"
+			method="editInfoUser">
+			<result name="success" type="redirect">
+				<param name="location">channel.action?userId=${userId}</param>
+			    <param name="parse">true</param>
+			    <param name="encode">true</param>
+			</result>		
+		</action>
+		
+		<action name="uploadSong" class="com.fudn.em.action.UserAction"
+			method="uploadSong">
+			
+			<interceptor-ref name="fileUpload">
+            	
+       			<param name="allowedTypes">audio/mp3, video/mpeg4</param>
+      			
+  	    	</interceptor-ref>
+  	    	
+  	    	<interceptor-ref name="params" />
+			<interceptor-ref name="validation" />
+			<interceptor-ref name="workflow" />
+			              	    		
+			<result name="success">music-upload-process.jsp</result>
+			
+		</action>
+		
+		<action name="displayProfileAction" class="com.fudn.em.action.UserAction"
+			method="displayUserProfile">
+			<result name="success">user-profile.jsp</result>
+		</action>
+ 
+	 	<action name="displayEditProfileAction" class="com.fudn.em.action.UserAction"
+			method="displayUserProfile">
+			<result name="success">edit-user-profile.jsp</result>
+		</action>
+		
+		
+	 	<action name="editUserProfileAction" class="com.fudn.em.action.UserAction"
+			method="editUserProfile">
+			<result name="success" type="redirect">displayProfileAction.action
+			</result>
+		</action>
+			<action name="register" class="com.fudn.em.action.UserAction"
+			method="doRegister">
+
+			<!-- SMTP configuration -->
+			<param name="host">smtp.gmail.com</param>
+			<param name="port">587</param>
+			<param name="userName">loitatnguyen@gmail.com</param>
+			<param name="passwd">heloi1992</param>
+			
+			<!-- End of SMTP configuration -->
+
+  	    	<interceptor-ref name="staticParams"/>
+  	    	<interceptor-ref name="params"/>
+			<interceptor-ref name="validation" />
+			<interceptor-ref name="workflow" />
+			<interceptor-ref name="exception"/>
+			              	    		
+			<result name="success">success.jsp</result>
+			<result name="input">signup.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+		
+		<action name="password_forgot">
+			<result>password_forgot.jsp</result>
+		</action>
+		
+		<action name="sendEmailForgetPassword" class="com.fudn.em.action.UserAction"
+			method="sendEmailForgetPassword">
+			<param name="host">smtp.gmail.com</param>
+			<param name="port">587</param>
+			<param name="userName">loitatnguyen@gmail.com</param>
+			<param name="passwd">heloi1992</param>
+			
+			<!-- End of SMTP configuration -->
+
+  	    	<interceptor-ref name="staticParams"/>
+  	    	<interceptor-ref name="params"/>
+			<interceptor-ref name="validation" />
+			<interceptor-ref name="workflow" />
+			<interceptor-ref name="exception"/>
+			
+			<result name="success">success.jsp</result>
+			<result name="error">error.jsp</result>	
+		</action>
+		
+		<action name="resetPassword" class="com.fudn.em.action.UserAction" method="resetPassword" >
+			<result name="success" type="redirect">../../login.action</result>
+			<result name="input">reset-password.jsp</result>
+		</action>
+		
+		<action name="confirmedMail" class="com.fudn.em.action.UserAction"
+			method="confirmedMail">
+			<result name="success" type="redirect">../../login.action</result>
+			<result name="error">error-confirm.jsp</result>
+			
+		</action>
+		
+		
+		<action name="uploadAvatarImage" class="com.fudn.em.action.UserAction"
+			method="uploadAvatarImage">
+			 <interceptor-ref name="fileUpload">
+            	
+       			<param name="allowedTypes">image/jpeg,image/png,image/gif,audio/mp3</param>
+<!--        			<param name="maximumSize">5242880</param> -->
+				<param name="maximumSize">10000000</param>
+  	    	</interceptor-ref>
+  	    	<interceptor-ref name="params" />
+			<interceptor-ref name="validation" />
+			<interceptor-ref name="workflow" />
+			              	    		
+			<result name="success" type="redirect">success.jsp</result>
+		</action>
+		
+
+		
+		
+		<action name="uploadInfoSong" class="com.fudn.em.action.UserAction"
+			method="uploadInfoSong">
+			<interceptor-ref name="fileUpload">
+            	
+       			<param name="allowedTypes">image/jpeg,image/png,image/gif</param>
+      			
+  	    	</interceptor-ref>
+  	    	<interceptor-ref name="params" />
+			<interceptor-ref name="validation" />
+			<interceptor-ref name="workflow" />
+			
+			<result name="success" type="redirect">../../home.action
+			</result>
+		</action>
+		
+		<!-- implements action config for module admin -->
+		<!-- <action name="createMember" class="com.fudn.balo.action.MemberAction" 
+			method="createMember"> <result name="login" type="redirect" >../../loginAction</result> 
+			<result name="input" >createMember.jsp</result> <result name="success">createMember.jsp</result> 
+			</action> -->
+	</package>
+
+</struts>

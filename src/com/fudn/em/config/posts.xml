@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+ <struts>
+ 	<package name="posts" extends="struts-default" namespace="/pages/posts">
+ 		<global-results>
+ 			<result name="error">../errors.jsp</result>
+ 		</global-results>
+ 		<global-exception-mappings>
+ 			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+ 		</global-exception-mappings>
+ 				<!-- implements action config for module admin -->
+<!-- 		<action name="createMember" class="com.fudn.balo.action.MemberAction" method="createMember">
+			<result name="login" type="redirect" >../../loginAction</result>
+			<result name="input" >createMember.jsp</result>
+			<result name="success">createMember.jsp</result>			
+		</action>
+-->			
+		<action name="detailPostAlbumAudio" class="com.fudn.em.action.PlaylistDetailAction" method="detailPostAlbumAudio">
+			<result name="login" type="redirect" >../../loginAction</result>
+			<result name="success">detail_post_album_audio.jsp</result>			
+		</action>
+		<action name="detailPostAlbumVideo" class="com.fudn.em.action.PlaylistDetailAction" method="detailPostAlbumVideo">
+			<result name="login" type="redirect" >../../loginAction</result>
+			<result name="success">detail_post_album_video.jsp</result>			
+		</action>
+		<action name="detailPostVideo" class="com.fudn.em.action.PlaylistDetailAction" method="detailPostVideo">
+			<result name="login" type="redirect" >../../loginAction</result>
+			<result name="success">detail_post_video.jsp</result>			
+		</action>
+		<action name="detailPostAudio" class="com.fudn.em.action.PlaylistDetailAction" method="detailPostAudio">
+			<result name="login" type="redirect" >../../loginAction</result>
+			<result name="success">detail_post_audio.jsp</result>			
+		</action>
+
+ 	</package>
+ 	<package name="postAjax1"  extends="json-default" namespace="/pages/posts">
+ 		<global-results>
+ 			<result name="error">../errors.jsp</result>
+ 		</global-results>
+ 		<global-exception-mappings>
+ 			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+ 		</global-exception-mappings>
+		<action name="getPopularVideo" class="com.fudn.em.action.GetPopularVideoAction"
+			method="getPopularVideo">
+			<result type="json" >mainpage.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax2"  extends="json-default" namespace="/pages/posts">
+		<action name="getPopularAudio" class="com.fudn.em.action.GetPopularAudioAction"
+			method="getPopularAudio">
+			<result type="json" >mainpage.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax3"  extends="json-default" namespace="/pages/posts">
+		<action name="getNewPost" class="com.fudn.em.action.GetNewPostAction"
+			method="getNewPost">
+			<result type="json" >mainpage.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax4"  extends="json-default" namespace="/pages/posts">
+		<action name="getPopularAudioAlbum" class="com.fudn.em.action.GetPopularAudioAlbumAction"
+			method="getPopularAudioAlbum">
+			<result type="json" >mainpage.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax5"  extends="json-default" namespace="/pages/posts">
+		<action name="getPopularVideoAlbum" class="com.fudn.em.action.GetPopularVideoAlbumAction"
+			method="getPopularVideoAlbum">
+			<result type="json" >mainpage.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax6"  extends="json-default" namespace="/pages/posts">
+		<action name="getNewAlbum" class="com.fudn.em.action.GetNewAlbumAction"
+			method="getNewAlbum">
+			<result type="json" >mainpage.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax7"  extends="json-default" namespace="/pages/posts">
+		<action name="getMainPage" class="com.fudn.em.action.PostListAction"
+			method="getMainPage">
+			<result type="json" >mainpage.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax8"  extends="json-default" namespace="/pages/posts">
+		<action name="getUserList" class="com.fudn.em.action.GetTopUserAction"
+			method="getUserList">
+			<result type="json" >mainpage.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax9"  extends="json-default" namespace="/pages/posts">
+		<action name="getAudioAlbumDetail" class="com.fudn.em.action.PlaylistAction" 
+			method="getAudioAlbumDetail">
+			<result type="json">detail_post_album_audio.jsp</result>
+		</action>
+		<action name="getVideoAlbumDetail" class="com.fudn.em.action.PlaylistAction" 
+			method="getVideoAlbumDetail">
+			<result type="json">detail_post_album_video.jsp</result>
+		</action>
+		<action name="getVideoAlbumDetail" class="com.fudn.em.action.PlaylistAction" 
+			method="getVideoAlbumDetail">
+			<result type="json">detail_post_album_video.jsp</result>
+		</action>
+		<action name="ratingPlaylist" class="com.fudn.em.action.PlaylistAction" 
+			method="ratingPlaylist">
+			<result type="json">detail_post_album_video.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax10"  extends="json-default" namespace="/pages/posts">
+		<action name="getAudioPostDetail" class="com.fudn.em.action.PostDisplayAction" 
+			method="getAudioPostDetail">
+			<result type="json">detail_post_audio.jsp</result>
+		</action>
+		<action name="getVideoPostDetail" class="com.fudn.em.action.PostDisplayAction" 
+			method="getVideoPostDetail">
+			<result type="json">detail_post_video.jsp</result>
+		</action>
+		<action name="ratingPost" class="com.fudn.em.action.PostDisplayAction" 
+			method="ratingPost">
+			<result type="json">detail_post_video.jsp</result>
+		</action>
+		<action name="report" class="com.fudn.em.action.PostDisplayAction" 
+			method="report">
+			<result type="json">detail_post_video.jsp</result>
+		</action>
+	</package>
+	<package name="postAjax11"  extends="json-default" namespace="/pages/posts">
+		<action name="getSearchingResult" class="com.fudn.em.action.SearchingResultAction"
+			method="getSearchingResult">
+			<result type="json" >searching_result.jsp</result>
+		</action>
+	</package>
+ </struts>
